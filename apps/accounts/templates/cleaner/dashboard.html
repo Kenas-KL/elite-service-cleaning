@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto space-y-6" x-data="{ status: '{{ profile.status }}' }">
+
+        <!-- Banner Profil / Messages -->
+        {% if messages %}
+        <div class="space-y-2">
+            {% for message in messages %}
+                <div class="p-4 rounded-xl text-xs font-bold flex items-center justify-between shadow-sm transition-all
+                    {% if message.tags == 'error' %} bg-rose-100 border border-rose-200 text-rose-800
+                    {% elif message.tags == 'success' %} bg-emerald-100 border border-emerald-200 text-emerald-800
+                    {% else %} bg-slate-100 border border-slate-200 text-slate-800 {% endif %}">
+
+                    <div class="flex items-center space-x-2">
+                        {% if message.tags == 'error' %}
+                            <i class="fa-solid fa-circle-exclamation text-rose-500 text-sm shrink-0"></i>
+                        {% elif message.tags == 'success' %}
+                            <i class="fa-solid fa-circle-check text-emerald-500 text-sm shrink-0"></i>
+                        {% endif %}
+                        <span>{{ message }}</span>
+                    </div>
+
+                    <button type="button" onclick="this.parentElement.remove()" class="text-slate-400 hover:text-slate-600 ml-2">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- En-tête du profil -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-4">
+
+                <!-- AVATAR / INITIALES -->
+                <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-brand-rose/50 text-brand-accent flex items-center justify-center text-2xl font-black shadow-inner border border-rose-100 shrink-0">
+                    {% if request.user.avatar %}
+                        <img src="{{ request.user.avatar.url }}" alt="{{ request.user.get_full_name }}" class="w-full h-full object-cover">
+                    {% else %}
+                        <span>{{ request.user.first_name|slice:":1" }}{{ request.user.last_name|slice:":1" }}</span>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <h1 class="text-xl sm:text-2xl font-black text-brand-navy">
+                            {{ request.user.first_name }} {{ request.user.last_name }}
+                        </h1>
+                        {% if profile.is_verified %}
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800" title="Profil Vérifié par l'agence">
+                                <i class="fa-solid fa-circle-check mr-1"></i> Vérifiée
+                            </span>
+                        {% else %}
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800" title="En attente de validation">
+                                <i class="fa-solid fa-clock mr-1"></i> En attente
+                            </span>
+                        {% endif %}
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">
+                        <i class="fa-solid fa-location-dot text-rose-500 mr-1"></i> {{ profile.neighborhood|default:"Quartier non renseigné" }}, {{ profile.city }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Toggle Rapide Statut -->
+            <form method="POST" action="{% url 'cleaner_dashboard' %}" class="w-full md:w-auto">
+                {% csrf_token %}
+                <div class="flex items-center justify-between md:justify-end space-x-3 bg-slate-50 p-2 rounded-2xl border border-slate-200">
+                    <span class="text-xs font-bold text-slate-600 pl-2">Mon statut :</span>
+                    <select name="status" onchange="this.form.submit()"
+                        class="text-xs font-bold py-2 px-3 rounded-xl border-none focus:ring-0 bg-white shadow-sm transition cursor-pointer
+                        {% if profile.status == 'AVAILABLE' %} text-emerald-600 {% elif profile.status == 'BUSY' %} text-amber-600 {% else %} text-rose-600 {% endif %}">
+                        <option value="AVAILABLE" {% if profile.status == 'AVAILABLE' %}selected{% endif %}>🟢 Disponible</option>
+                        <option value="BUSY" {% if profile.status == 'BUSY' %}selected{% endif %}>🟠 En prestation</option>
+                        <option value="UNAVAILABLE" {% if profile.status == 'UNAVAILABLE' %}selected{% endif %}>🔴 Indisponible</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <!-- Alerte si non vérifié -->
+        {% if not profile.is_verified %}
+        <div class="p-4 bg-amber-50 border border-amber-200 rounded-2xl flex items-start space-x-3 text-amber-900 text-xs">
+            <i class="fa-solid fa-triangle-exclamation text-amber-600 text-base shrink-0 mt-0.5"></i>
+            <div>
+                <p class="font-bold">Votre compte est actuellement en cours de vérification par l'équipe Elite Cleaning.</p>
+                <p class="mt-0.5 text-amber-700">Vous apparaîtrez dans les recherches des clients dès que nos équipes auront validé votre dossier.</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Grille d'activités & Statistiques -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-2">
+                <div class="flex items-center justify-between text-slate-400">
+                    <span class="text-xs font-bold uppercase tracking-wider">Demandes en attente</span>
+                    <i class="fa-solid fa-bell text-brand-accent"></i>
+                </div>
+                <p class="text-3xl font-black text-brand-navy">0</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-2">
+                <div class="flex items-center justify-between text-slate-400">
+                    <span class="text-xs font-bold uppercase tracking-wider">Missions effectuées</span>
+                    <i class="fa-solid fa-broom text-emerald-500"></i>
+                </div>
+                <p class="text-3xl font-black text-brand-navy">0</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-2">
+                <div class="flex items-center justify-between text-slate-400">
+                    <span class="text-xs font-bold uppercase tracking-wider">Note globale</span>
+                    <i class="fa-solid fa-star text-amber-400"></i>
+                </div>
+                <p class="text-3xl font-black text-brand-navy">5.0 <span class="text-xs text-slate-400 font-normal">/ 5</span></p>
+            </div>
+        </div>
+
+        <!-- Formulaire de modification du Profil & Zone -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm space-y-6">
+            <h2 class="text-base font-bold text-brand-navy flex items-center space-x-2">
+                <i class="fa-solid fa-user-gear text-brand-accent"></i>
+                <span>Modifier mes informations personnelles</span>
+            </h2>
+
+            <!-- Note l'ajout de enctype="multipart/form-data" -->
+            <form method="POST" action="{% url 'cleaner_dashboard' %}" enctype="multipart/form-data" class="space-y-6">
+                {% csrf_token %}
+
+                <!-- Champ Photo de profil -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold uppercase text-slate-700">Photo de profil (Convertie auto en WebP)</label>
+                    <div class="flex items-center space-x-4">
+                        <input type="file" name="avatar" accept="image/*"
+                            class="block w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-brand-rose file:text-brand-accent hover:file:bg-rose-100 transition cursor-pointer border border-slate-200 rounded-xl bg-slate-50/50">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Email non modifiable -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">
+                            Adresse Email <span class="text-slate-400 font-normal">(Non modifiable)</span>
+                        </label>
+                        <div class="relative">
+                            <input type="email" value="{{ request.user.email }}" disabled
+                                class="w-full py-3 px-4 text-xs rounded-xl border border-slate-200 bg-slate-100 text-slate-500 cursor-not-allowed">
+                            <i class="fa-solid fa-lock absolute right-4 top-3.5 text-slate-400 text-xs"></i>
+                        </div>
+                    </div>
+
+                    <!-- Ville non modifiable -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Ville</label>
+                        <input type="text" value="{{ profile.city }}" disabled
+                            class="w-full py-3 px-4 text-xs rounded-xl border border-slate-200 bg-slate-100 text-slate-500 cursor-not-allowed">
+                    </div>
+                </div>
+
+                <!-- Quartier modifiable -->
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Quartier d'intervention</label>
+                    <input type="text" name="neighborhood" value="{{ profile.neighborhood|default:'' }}" required
+                        placeholder="ex: Baudouin, Tabacongo, Kituku..."
+                        class="w-full py-3 px-4 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-pink bg-slate-50/50 focus:bg-white transition">
+                </div>
+
+                <div class="flex justify-end pt-2">
+                    <button type="submit" class="py-3 px-6 rounded-xl bg-brand-navy hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-md">
+                        Enregistrer les modifications
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

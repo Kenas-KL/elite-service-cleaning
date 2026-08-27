@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="py-12 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-12">
+            <span class="text-xs font-bold text-brand-pink uppercase tracking-widest">Support & FAQ</span>
+            <h1 class="text-3xl font-black text-brand-navy mt-1">Comment pouvons-nous vous aider ?</h1>
+            <p class="text-sm text-slate-500 mt-2">Retrouvez les réponses aux questions les plus fréquentes sur Elite Cleaning Services.</p>
+        </div>
+
+        <!-- ACCORDÉON FAQ -->
+        <div class="space-y-4" x-data="{ active: null }">
+
+            <div class="bg-white rounded-2xl border border-rose-100 shadow-sm overflow-hidden">
+                <button @click="active = (active === 1 ? null : 1)" class="w-full p-5 text-left font-bold text-brand-navy flex justify-between items-center text-sm">
+                    <span>Comment l'agence vérifie-t-elle les femmes de ménage ?</span>
+                    <i class="fa-solid" :class="active === 1 ? 'fa-chevron-up text-brand-pink' : 'fa-chevron-down'"></i>
+                </button>
+                <div x-show="active === 1" x-transition class="p-5 pt-0 text-xs text-slate-600 leading-relaxed border-t border-slate-50">
+                    Chaque femme de ménage passe par un entretien physique à notre agence, une vérification d'identité (pièce d'identité, preuve de résidence à Kalemie) et une évaluation de ses compétences de nettoyage.
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-rose-100 shadow-sm overflow-hidden">
+                <button @click="active = (active === 2 ? null : 2)" class="w-full p-5 text-left font-bold text-brand-navy flex justify-between items-center text-sm">
+                    <span>Comment effectuer une réservation ?</span>
+                    <i class="fa-solid" :class="active === 2 ? 'fa-chevron-up text-brand-pink' : 'fa-chevron-down'"></i>
+                </button>
+                <div x-show="active === 2" x-transition class="p-5 pt-0 text-xs text-slate-600 leading-relaxed border-t border-slate-50">
+                    Il vous suffit de parcourir la liste des prestataires disponibles sur la page d'accueil, de sélectionner la ménagère qui vous convient selon sa localisation et son âge, puis de cliquer sur "Réserver".
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-rose-100 shadow-sm overflow-hidden">
+                <button @click="active = (active === 3 ? null : 3)" class="w-full p-5 text-left font-bold text-brand-navy flex justify-between items-center text-sm">
+                    <span>Je suis ménagère, comment être recrutée par l'agence ?</span>
+                    <i class="fa-solid" :class="active === 3 ? 'fa-chevron-up text-brand-pink' : 'fa-chevron-down'"></i>
+                </button>
+                <div x-show="active === 3" x-transition class="p-5 pt-0 text-xs text-slate-600 leading-relaxed border-t border-slate-50">
+                    Cliquez sur le bouton "Devenir Prestataire" en haut du site, inscrivez-vous et notre équipe vous contactera pour un entretien de validation.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CONTACT DIRECT -->
+        <div class="mt-12 bg-gradient-to-r from-brand-navy to-slate-800 rounded-3xl p-8 text-white text-center shadow-lg">
+            <h3 class="font-bold text-lg mb-2">Vous avez une question spécifique ?</h3>
+            <p class="text-xs text-slate-300 mb-6">Notre équipe à Kalemie est disponible pour vous assister du lundi au samedi.</p>
+            <a href="tel:+243000000000" class="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-brand-pink hover:bg-brand-accent text-white text-xs font-bold transition">
+                <i class="fa-solid fa-phone"></i>
+                <span>Contacter l'agence</span>
+            </a>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

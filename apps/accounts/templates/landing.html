@@ -1,0 +1,489 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- 1. HERO SECTION (Inclusif & Premium) -->
+<section class="relative overflow-hidden bg-gradient-to-b from-brand-rose/40 via-white to-slate-50 py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            <div class="space-y-8 text-center lg:text-left">
+                <div class="inline-flex items-center space-x-2 bg-rose-100 text-brand-accent text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">
+                    <i class="fa-solid fa-sparkles text-brand-gold"></i>
+                    <span>Propreté • Confiance • Excellence</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-navy leading-tight tracking-tight">
+                    Des prestataires qualifiés pour la tranquillité de votre foyer.
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    <strong>Elite Cleaning Services</strong> connecte les ménages et entreprises avec des agents d'entretien qualifiés, rigoureusement vérifiés et valorisés à leur juste valeur.
+                </p>
+
+                <!-- LES DEUX CALL TO ACTION DISTINCTS -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <!-- CTA CLIENT : Scroll fluide vers le catalogue -->
+                    <a href="#prestataires" class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-brand-navy text-white font-bold px-8 py-4 rounded-2xl hover:bg-slate-800 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-magnifying-glass text-brand-gold"></i>
+                        <span>Trouver un prestataire</span>
+                    </a>
+
+                    <!-- CTA PRESTATAIRE -->
+                    <a href="{% url 'register' %}?role=cleaner" class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-gradient-to-r from-brand-pink to-brand-accent text-white font-bold px-8 py-4 rounded-2xl hover:opacity-95 shadow-md hover:shadow-lg transition-all">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                        <span>Rejoindre notre équipe</span>
+                    </a>
+                </div>
+
+                <!-- Badges de rassurance -->
+                <div class="pt-6 border-t border-slate-200/60 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-500 font-medium">
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 text-sm mr-2"></i> Profils 100% Vérifiés</span>
+                    <span class="flex items-center"><i class="fa-solid fa-shield-halved text-brand-pink text-sm mr-2"></i> Service Garanti</span>
+                    <span class="flex items-center"><i class="fa-solid fa-user-shield text-brand-gold text-sm mr-2"></i> Agence de Référence</span>
+                </div>
+            </div>
+
+            <!-- Visuel d'illustration -->
+            <div class="relative">
+                <div class="absolute -top-6 -left-6 w-72 h-72 bg-rose-200/50 rounded-full filter blur-3xl"></div>
+                <div class="relative bg-white p-4 rounded-3xl shadow-2xl border border-rose-100">
+                    <div class="bg-gradient-to-br from-brand-rose via-white to-rose-100 rounded-2xl p-8 text-center space-y-6">
+                        <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-md text-brand-accent text-3xl">
+                            <i class="fa-solid fa-crown text-brand-gold"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-navy">L'Excellence du Service</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Nous créons des opportunités de travail décentes et sécurisées pour nos agents d'entretien (hommes et femmes), tout en offrant aux familles un service irréprochable.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- 2. SECTION STATISTIQUES / RASSURANCE -->
+<section class="py-8 bg-brand-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="p-4">
+                <p class="text-3xl font-black text-brand-gold">100%</p>
+                <p class="text-xs text-slate-300 uppercase tracking-wider font-semibold mt-1">Identités Vérifiées</p>
+            </div>
+            <div class="p-4">
+                <p class="text-3xl font-black text-brand-pink">WhatsApp</p>
+                <p class="text-xs text-slate-300 uppercase tracking-wider font-semibold mt-1">Réservation Rapide</p>
+            </div>
+            <div class="p-4">
+                <p class="text-3xl font-black text-brand-gold">4.9/5</p>
+                <p class="text-xs text-slate-300 uppercase tracking-wider font-semibold mt-1">Satisfaction Client</p>
+            </div>
+            <div class="p-4">
+                <p class="text-3xl font-black text-brand-pink">Kalemie</p>
+                <p class="text-xs text-slate-300 uppercase tracking-wider font-semibold mt-1">Ancrage Local</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- 3. SECTION CATALOGUE & RECHERCHE DE PRESTATAIRES -->
+<section class="relative overflow-hidden bg-gradient-to-b from-brand-rose/40 via-white to-slate-50 py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            <div class="space-y-8 text-center lg:text-left">
+                <div class="inline-flex items-center space-x-2 bg-rose-100 text-brand-accent text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">
+                    <i class="fa-solid fa-sparkles text-brand-gold"></i>
+                    <span>Propreté • Confiance • Excellence</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-navy leading-tight tracking-tight">
+                    Des prestataires qualifiés pour la tranquillité de votre foyer.
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    <strong>Elite Cleaning Services</strong> connecte les ménages et entreprises avec des agents d'entretien qualifiés, rigoureusement vérifiés et valorisés à leur juste valeur.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <a href="#prestataires" class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-brand-navy text-white font-bold px-8 py-4 rounded-2xl hover:bg-slate-800 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-magnifying-glass text-brand-gold"></i>
+                        <span>Trouver un prestataire</span>
+                    </a>
+
+                    <a href="{% url 'register' %}?role=cleaner" class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-gradient-to-r from-brand-pink to-brand-accent text-white font-bold px-8 py-4 rounded-2xl hover:opacity-95 shadow-md hover:shadow-lg transition-all">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                        <span>Rejoindre notre équipe</span>
+                    </a>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200/60 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-500 font-medium">
+                    <span class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 text-sm mr-2"></i> Profils 100% Vérifiés</span>
+                    <span class="flex items-center"><i class="fa-solid fa-shield-halved text-brand-pink text-sm mr-2"></i> Service Garanti</span>
+                    <span class="flex items-center"><i class="fa-solid fa-user-shield text-brand-gold text-sm mr-2"></i> Agence de Référence</span>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="absolute -top-6 -left-6 w-72 h-72 bg-rose-200/50 rounded-full filter blur-3xl"></div>
+                <div class="relative bg-white p-4 rounded-3xl shadow-2xl border border-rose-100">
+                    <div class="bg-gradient-to-br from-brand-rose via-white to-rose-100 rounded-2xl p-8 text-center space-y-6">
+                        <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-md text-brand-accent text-3xl">
+                            <i class="fa-solid fa-crown text-brand-gold"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-navy">L'Excellence du Service</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Nous créons des opportunités de travail décentes et sécurisées pour nos agents d'entretien (hommes et femmes), tout en offrant aux familles un service irréprochable.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- 2. SECTION STATISTIQUES -->
+<section class="py-8 bg-brand-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="p-4">
+                <p class="text-3xl font-black text-brand-gold">100%</p>
+                <p class="text-xs text-slate-300 uppercase tracking-wider font-semibold mt-1">Identités Vérifiées</p>
+            </div>
+            <div class="p-4">
+                <p class="text-3xl font-black text-brand-pink">WhatsApp</p>
+                <p class="text-xs text-slate-300 uppercase tracking-wider font-semibold mt-1">Réservation Rapide</p>
+            </div>
+            <div class="p-4">
+                <p class="text-3xl font-black text-brand-gold">4.9/5</p>
+                <p class="text-xs text-slate-300 uppercase tracking-wider font-semibold mt-1">Satisfaction Client</p>
+            </div>
+            <div class="p-4">
+                <p class="text-3xl font-black text-brand-pink">Kalemie</p>
+                <p class="text-xs text-slate-300 uppercase tracking-wider font-semibold mt-1">Ancrage Local</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- 3. SECTION CATALOGUE & RECHERCHE DE PRESTATAIRES (DYNAMIQUE) -->
+<section id="prestataires" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-xs font-bold text-brand-pink uppercase tracking-widest">Nos Agents d'Entretien</span>
+            <h2 class="text-3xl font-black text-brand-navy mt-1">Trouvez le profil adapté à vos besoins</h2>
+            <p class="text-sm text-slate-500 mt-2">Filtrez selon la localisation, l'âge et les compétences de nos professionnels à Kalemie.</p>
+        </div>
+
+        <!-- BARRE DE FILTRES DYNAMIQUE -->
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 mb-10 shadow-sm">
+            <form method="GET" action="#prestataires" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+
+                <!-- Filtre Quartier / Ville -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Quartier / Ville</label>
+                    <input type="text" name="city" value="{{ selected_city }}" placeholder="ex: Baudouin, Kalemie" class="w-full px-4 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-pink bg-white">
+                </div>
+
+                <!-- Filtre Tranche d'âge -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tranche d'âge</label>
+                    <select name="age" class="w-full px-4 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-pink bg-white cursor-pointer">
+                        <option value="">Tous les âges</option>
+                        <option value="18-25" {% if selected_age == '18-25' %}selected{% endif %}>18 - 25 ans</option>
+                        <option value="26-35" {% if selected_age == '26-35' %}selected{% endif %}>26 - 35 ans</option>
+                        <option value="36+" {% if selected_age == '36+' %}selected{% endif %}>36 ans et +</option>
+                    </select>
+                </div>
+
+                <!-- Filtre Service Recherché (Dynamique BDD) -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Service Recherché</label>
+                    <select name="service" class="w-full px-4 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-pink bg-white cursor-pointer">
+                        <option value="">Tous les services</option>
+                        {% for s in services %}
+                            <option value="{{ s.id }}" {% if selected_service == s.id|stringformat:"s" %}selected{% endif %}>{{ s.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Boutons d'Action -->
+                <div class="flex items-end space-x-2">
+                    <button type="submit" class="w-full py-2.5 bg-brand-navy hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition shadow">
+                        <i class="fa-solid fa-filter mr-1.5"></i> Filtrer
+                    </button>
+                    {% if selected_city or selected_age or selected_service %}
+                        <a href="{% url 'landing' %}#prestataires" class="py-2.5 px-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs rounded-xl transition shrink-0" title="Réinitialiser">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+
+        <!-- GRILLE DE CARTES PRESTATAIRES -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+            {% for cleaner in cleaners %}
+            <div class="bg-white rounded-2xl border border-rose-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                <div>
+                    <!-- Photo & Badges de Statut / Vérification -->
+                    <div class="relative h-48 bg-gradient-to-tr from-brand-rose to-rose-100 flex items-center justify-center overflow-hidden">
+                        {% if cleaner.user.avatar %}
+                            <img src="{{ cleaner.user.avatar.url }}" alt="{{ cleaner }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        {% else %}
+                            <div class="w-20 h-20 rounded-full bg-white text-brand-navy flex items-center justify-center font-bold text-2xl shadow-inner border border-rose-100">
+                                {{ cleaner.user.first_name|first|upper }}{{ cleaner.user.last_name|first|upper }}
+                            </div>
+                        {% endif %}
+
+                        <!-- Badge Vérifié par l'agence -->
+                        {% if cleaner.is_verified %}
+                        <span class="absolute top-3 right-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow flex items-center space-x-1">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Vérifié(e)</span>
+                        </span>
+                        {% endif %}
+
+                        <!-- Badge Statut -->
+                        <span class="absolute bottom-3 left-3 text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow
+                            {% if cleaner.status == 'AVAILABLE' %}bg-emerald-100 text-emerald-800 border border-emerald-200
+                            {% elif cleaner.status == 'BUSY' %}bg-amber-100 text-amber-800 border border-amber-200
+                            {% else %}bg-slate-100 text-slate-700 border border-slate-200{% endif %}">
+                            <i class="fa-solid fa-circle text-[8px] mr-1 {% if cleaner.status == 'AVAILABLE' %}text-emerald-500{% elif cleaner.status == 'BUSY' %}text-amber-500{% else %}text-slate-400{% endif %}"></i>
+                            {{ cleaner.get_status_display }}
+                        </span>
+                    </div>
+
+                    <!-- Infos Profil -->
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold text-lg text-brand-navy">
+                                {{ cleaner.user.first_name }} {{ cleaner.user.last_name }}
+                            </h3>
+                            {% if cleaner.age %}
+                            <span class="text-xs font-bold bg-rose-100 text-brand-accent px-2 py-0.5 rounded shrink-0">
+                                {{ cleaner.age }} ans
+                            </span>
+                            {% endif %}
+                        </div>
+
+                        <!-- Expérience & Localisation -->
+                        <div class="flex items-center space-x-3 text-xs text-slate-500 mb-3">
+                            <span class="flex items-center">
+                                <i class="fa-solid fa-location-dot text-brand-pink mr-1"></i>
+                                {% if cleaner.neighborhood %}{{ cleaner.neighborhood }}, {% endif %}{{ cleaner.city }}
+                            </span>
+                            {% if cleaner.years_of_experience > 0 %}
+                            <span class="flex items-center text-brand-navy font-semibold">
+                                <i class="fa-solid fa-briefcase text-brand-gold mr-1"></i>
+                                {{ cleaner.years_of_experience }} an{% if cleaner.years_of_experience > 1 %}s{% endif %} exp.
+                            </span>
+                            {% endif %}
+                        </div>
+
+                        <!-- Présentation / Bio -->
+                        <p class="text-xs text-slate-600 line-clamp-2 mb-3">
+                            {{ cleaner.bio|default:"Prestataire d'entretien qualifié, ponctuel et rigoureux à votre service." }}
+                        </p>
+
+                        <!-- Badges des Services Maîtrisés -->
+                        {% if cleaner.services.all %}
+                        <div class="flex flex-wrap gap-1 mb-4">
+                            {% for service in cleaner.services.all|slice:":3" %}
+                            <span class="text-[10px] font-semibold bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md">
+                                {{ service.name }}
+                            </span>
+                            {% endfor %}
+                            {% if cleaner.services.count > 3 %}
+                            <span class="text-[10px] font-semibold bg-slate-100 text-slate-400 px-1 py-0.5 rounded-md">
+                                +{{ cleaner.services.count|add:"-3" }}
+                            </span>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- CTA Réserver via WhatsApp -->
+                <div class="p-5 pt-0">
+                    {% if cleaner.status == 'AVAILABLE' %}
+                        <a href="https://wa.me/243837394093?text=Bonjour%20Elite%20Cleaning%20Services%2C%20je%20souhaite%20r%C3%A9server%20le%20prestataire%20{{ cleaner.user.get_full_name|urlencode }}%20depuis%20votre%20site."
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="flex items-center justify-center space-x-2 text-center w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Réserver via WhatsApp</span>
+                        </a>
+                    {% else %}
+                        <button disabled class="block text-center w-full py-2.5 rounded-xl bg-slate-100 text-slate-400 font-bold text-xs cursor-not-allowed">
+                            Indisponible actuellement
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% empty %}
+            <!-- Message en cas de filtre sans résultat -->
+            <div class="col-span-full bg-slate-50 border border-dashed border-slate-200 rounded-3xl p-12 text-center space-y-3">
+                <div class="w-12 h-12 bg-rose-100 text-brand-pink rounded-full flex items-center justify-center mx-auto text-xl">
+                    <i class="fa-solid fa-user-slash"></i>
+                </div>
+                <h3 class="text-sm font-bold text-brand-navy">Aucun prestataire disponible pour ces critères</h3>
+                <p class="text-xs text-slate-500">Essayez de modifier votre quartier ou de réinitialiser la recherche.</p>
+                <a href="{% url 'landing' %}#prestataires" class="inline-block py-2 px-4 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs transition">
+                    Voir tous nos prestataires
+                </a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- 4. SECTION "COMMENT ÇA MARCHE" -->
+<section class="py-16 bg-slate-50 border-t border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-xs font-bold text-brand-pink uppercase tracking-widest">Processus Simple</span>
+            <h2 class="text-3xl font-black text-brand-navy mt-1">Comment fonctionne l'agence ?</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <!-- Étape 1 -->
+            <div class="bg-white p-8 rounded-3xl border border-rose-100 shadow-sm relative">
+                <div class="w-12 h-12 bg-brand-navy text-white rounded-2xl flex items-center justify-center font-black text-lg mx-auto mb-4 shadow">
+                    1
+                </div>
+                <h3 class="font-bold text-brand-navy text-lg mb-2">Choisissez votre Agent</h3>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Explorez les profils vérifiés de nos prestataires selon votre quartier et le type d'intervention souhaité.
+                </p>
+            </div>
+
+            <!-- Étape 2 -->
+            <div class="bg-white p-8 rounded-3xl border border-rose-100 shadow-sm relative">
+                <div class="w-12 h-12 bg-emerald-600 text-white rounded-2xl flex items-center justify-center font-black text-lg mx-auto mb-4 shadow">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                </div>
+                <h3 class="font-bold text-brand-navy text-lg mb-2">Discutez sur WhatsApp</h3>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Cliquez sur "Réserver", précisez la date et l'adresse à notre agence directement sur WhatsApp.
+                </p>
+            </div>
+
+            <!-- Étape 3 -->
+            <div class="bg-white p-8 rounded-3xl border border-rose-100 shadow-sm relative">
+                <div class="w-12 h-12 bg-brand-gold text-white rounded-2xl flex items-center justify-center font-black text-lg mx-auto mb-4 shadow">
+                    3
+                </div>
+                <h3 class="font-bold text-brand-navy text-lg mb-2">Intervention Garantie</h3>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    L'agence valide le contrat, bloque le créneau et notre prestataire intervient chez vous en toute sérénité.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- 5. SECTION "POURQUOI CHOISIR ELITE CLEANING" -->
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            <div>
+                <span class="text-xs font-bold text-brand-pink uppercase tracking-widest">Nos Engagements</span>
+                <h2 class="text-3xl font-black text-brand-navy mt-1 mb-6">Un service structuré et sécurisé à Kalemie</h2>
+
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-xl bg-rose-100 text-brand-pink flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-user-check"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-navy text-sm">Sélection Rigoureuse</h4>
+                            <p class="text-xs text-slate-500 mt-1">Chaque agent passe par un contrôle d'identité strict et un entretien à notre agence avant d'être validé.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-xl bg-slate-100 text-brand-navy flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-navy text-sm">Conditions Justes pour nos Prestataires</h4>
+                            <p class="text-xs text-slate-500 mt-1">Nous valorisons le travail domestique en garantissant un cadre de travail respectueux et équitable pour nos employés.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-xl bg-amber-100 text-brand-gold flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-navy text-sm">Suivi par l'Agence</h4>
+                            <p class="text-xs text-slate-500 mt-1">L'agence reste le garant de la qualité de la prestation et reste joignable en cas de besoin.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-tr from-brand-navy to-slate-800 rounded-3xl p-8 text-white shadow-2xl relative">
+                <div class="space-y-4">
+                    <span class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Témoignage Agence</span>
+                    <p class="text-sm italic leading-relaxed text-slate-200">
+                        « Notre mission est d'apporter de l'ordre et de la tranquillité dans les foyers tout en offrant un emploi digne et sécurisé à nos agents. »
+                    </p>
+                    <div class="pt-4 border-t border-slate-700 flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-pink flex items-center justify-center font-bold text-white text-xs">
+                            EC
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold">Direction Elite Cleaning Services</p>
+                            <p class="text-[10px] text-slate-400">Kalemie, RDC</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- 6. CALL TO ACTION FINAL -->
+<section class="py-16 bg-gradient-to-r from-brand-navy via-slate-900 to-brand-navy text-white text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <h2 class="text-3xl sm:text-4xl font-black">Prêt à transformer la gestion de votre ménage ?</h2>
+        <p class="text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Contactez-nous directement pour discuter de vos besoins ou inscrivez-vous en tant que prestataire pour rejoindre notre réseau.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+            <a href="https://wa.me/243837394093?text=Bonjour%20Elite%20Cleaning%20Services%2C%20je%20souhaite%20des%20informations%20pour%20r%C3%A9server%20un%20service%20de%20nettoyage."
+               target="_blank"
+               rel="noopener noreferrer"
+               class="px-8 py-3.5 rounded-xl bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider hover:bg-emerald-700 transition shadow flex items-center justify-center space-x-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Nous contacter sur WhatsApp</span>
+            </a>
+            <a href="{% url 'register' %}?role=cleaner" class="px-8 py-3.5 rounded-xl bg-brand-pink text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-accent transition shadow">
+                Rejoindre comme prestataire
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
