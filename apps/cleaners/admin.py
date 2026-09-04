@@ -19,15 +19,16 @@ class CleanerProfileAdmin(admin.ModelAdmin):
         'neighborhood',
         'display_age',
         'years_of_experience',
-        'status_badge',
         'is_verified',
+        'status_badge',
+        'status',
         'created_at'
     )
 
-    list_editable = ['is_verified',]
+
     # Filtres latéraux très utiles pour filtrer rapidement sur le terrain
     list_filter = ('status', 'is_verified', 'city', 'services', 'created_at')
-
+    list_editable = ('status', 'is_verified')
     # Barre de recherche (sur le nom, prénom, téléphone et quartier)
     search_fields = (
         'user__first_name',
